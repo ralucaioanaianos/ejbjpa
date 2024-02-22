@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="col-md-4">
-    <h1>Books</h1>
+    <h1>Products</h1>
 </div>
 <form method="post" action="http://localhost:8080/server/client" class="col-md-4">
     <div class="form-group">
@@ -14,8 +14,8 @@
         <input type="text" class="form-control" name="user" id="username" placeholder="Your username here...">
     </div>
     <div class="form-group">
-        <label for="note">Book</label>
-        <textarea name="note" class="form-control" id="note" rows="3" placeholder="Your book here..."></textarea>
+        <label for="product">Product</label>
+        <textarea name="product" class="form-control" id="product" rows="3" placeholder="Your product here..."></textarea>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -24,7 +24,7 @@
     <h3>Books reserved:</h3>
 </div>
 <div class="col-md-4">
-    <p>${notes}</p>
+    <p>${products}</p>
 </div>
 
 </body>

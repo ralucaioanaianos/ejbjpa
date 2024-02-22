@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="http://xmlns.jcp.org/xml/ns/persistence"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
-    <persistence-unit name="tpjad_user_notes">
+    <persistence-unit name="tpjad_user_products">
         <!-- for GlassFish -->
 <!--        <jta-data-source>jdbc/mysql</jta-data-source>-->
 
@@ -11,7 +11,7 @@
 
          <jta-data-source>java:jboss/datasources/MySqlDS</jta-data-source>
 
-        <class>com.tpjad.ejb.entities.Note</class>
+        <class>com.tpjad.ejb.entities.Product</class>
         <class>com.tpjad.ejb.entities.User</class>
 
         <properties>

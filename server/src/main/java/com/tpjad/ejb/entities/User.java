@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class User extends Base implements Serializable {
   private String name = "";
   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  private List<Note> notes;
+  private List<Product> products;
 
   public String getName() {
     return name;
@@ -19,11 +19,11 @@ public class User extends Base implements Serializable {
     this.name = userName;
   }
 
-  public List<Note> getNotes() {
-    return notes;
+  public List<Product> getProducts() {
+    return products;
   }
 
-  public void setNotes(List<Note> notes) {
-    this.notes = notes;
+  public void setProducts(List<Product> products) {
+    this.products = products;
   }
 }

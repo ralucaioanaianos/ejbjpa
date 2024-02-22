@@ -1,20 +1,20 @@
 package com.tpjad.ejb.dtos;
 
-import com.tpjad.ejb.entities.Note;
+import com.tpjad.ejb.entities.Product;
 
 import java.io.Serializable;
 
-public class NoteDTO implements Serializable {
+public class ProductDTO implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private Long id = 1L;
-  private String note = "";
+  private String product = "";
   private String username = "";
 
-  public NoteDTO(Note note) {
-    this.id = note.getId();
-    this.note = note.getNote();
-    this.username = note.getUser().getName();
+  public ProductDTO(Product product) {
+    this.id = product.getId();
+    this.product = product.getProduct();
+    this.username = product.getUser().getName();
   }
 
   public Long getId() {
@@ -25,12 +25,12 @@ public class NoteDTO implements Serializable {
     this.id = id;
   }
 
-  public String getNote() {
-    return note;
+  public String getProduct() {
+    return product;
   }
 
-  public void setNote(String note) {
-    this.note = note;
+  public void setProduct(String product) {
+    this.product = product;
   }
 
   public String getUsername() {

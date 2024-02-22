@@ -7,43 +7,43 @@ import javax.servlet.*;
 import javax.servlet.annotation.*;
 import javax.servlet.http.*;
 
-import com.tpjad.ejb.entities.Note;
+import com.tpjad.ejb.entities.Product;
 import com.tpjad.ejb.entities.User;
-import com.tpjad.ejb.interfaces.UserNotesLocal;
+import com.tpjad.ejb.interfaces.UserProductsLocal;
 
 @WebServlet(name = "ServletClient", urlPatterns = "/client")
 public class ServletClient extends HttpServlet {
 
   @EJB
-  private UserNotesLocal userNotesLocal;
+  private UserProductsLocal userProductsLocal;
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     try {
-      String note = request.getParameter("note");
+      String product = request.getParameter("product");
       String userName = request.getParameter("user");
 
-      if (note == null || note.isEmpty()) {
-        throw new Error("Note cannot be empty");
+      if (product == null || product.isEmpty()) {
+        throw new Error("Product cannot be empty");
       }
 
       if (userName == null || userName.isEmpty()) {
         throw new Error("User cannot be empty");
       }
 
-      User user = this.userNotesLocal.addNoteForUser(note, userName);
+      User user = this.userProductsLocal.addProductForUser(product, userName);
 
       if (user == null) {
         throw new Error("User not found");
       }
 
-      String notes = this.userNotesLocal.getAllNotesForUser(user)
+      String products = this.userProductsLocal.getAllProductsForUser(user)
           .stream()
-          .map(Note::toString)
+          .map(Product::toString)
           .collect(Collectors.joining("<br>"));
 
-      request.setAttribute("notes", notes);
-      RequestDispatcher dispatcher = request.getRequestDispatcher("note.jsp");
+      request.setAttribute("products", products);
+      RequestDispatcher dispatcher = request.getRequestDispatcher("product.jsp");
       dispatcher.forward(request, response);
     } catch (Exception e) {
       RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");

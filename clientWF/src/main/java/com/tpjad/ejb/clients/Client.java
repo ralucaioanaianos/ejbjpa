@@ -1,37 +1,21 @@
 package com.tpjad.ejb.clients;
 
-import com.tpjad.ejb.dtos.NoteDTO;
-import com.tpjad.ejb.interfaces.UserNotesRemote;
+import com.tpjad.ejb.dtos.ProductDTO;
+import com.tpjad.ejb.interfaces.UserProductsRemote;
 
 import java.util.*;
 import javax.naming.*;
 
 public class Client {
-    static final String JNDIFacadeR = "ejb:/server/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesRemote";
-
-    /*
-          java:global/server/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesRemote
-          java:app/server/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesRemote
-          java:module/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesRemote
-          java:jboss/exported/server/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesRemote
-          ejb:/server/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesRemote
-          java:global/server/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesLocal
-          java:app/server/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesLocal
-          java:module/UserNotesBean!com.tpjad.ejb.interfaces.UserNotesLocal
-   */
+    static final String JNDIFacadeR = "ejb:/server/UserProductsBean!com.tpjad.ejb.interfaces.UserProductsRemote";
     public static void main(String[] args) throws Exception {
         Context context = createInitialContext();
-        UserNotesRemote proxy = (UserNotesRemote) context.lookup(JNDIFacadeR);
-
+        UserProductsRemote proxy = (UserProductsRemote) context.lookup(JNDIFacadeR);
         System.out.println("Client started");
-
-        // Add a new user book
-        proxy.addNoteForUserR("Book2" + java.time.LocalDate.now(), "ion");
-
-        // Print all the user books
-        System.out.println("Books:");
-        for (NoteDTO noteDTO : proxy.getAllNotesR()) {
-            System.out.println("user: " + noteDTO.getUsername() + ", book: " + noteDTO.getNote());
+        proxy.addProductForUserR("Product2" + java.time.LocalDate.now(), "ion");
+        System.out.println("Products:");
+        for (ProductDTO productDTO : proxy.getAllProductsR()) {
+            System.out.println("user: " + productDTO.getUsername() + ", product: " + productDTO.getProduct());
         }
     }
 
